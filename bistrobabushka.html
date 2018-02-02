@@ -4,95 +4,40 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <style>
-        body {
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        .container {
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        .modtager {
-            display: grid;
-            width: 80vw;
-            height: auto;
-            grid-template-columns: repeat(1, 1fr);
-            grid-gap: 1vw;
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        @media screen and (min-width: 824px) {
-            .modtager {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media screen and (min-width: 1236px) {
-            .modtager {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        h1 {
-            font-family: sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-    </style>
-
-
+    <link rel="stylesheet" href="layout.css">
+    <title>Bistro Babushka</title>
 </head>
-
-<div class="container">
-    <div class="modtager"></div>
-</div>
-<template class="template">
+<header>
+    <img src="" alt="">
+    <nav>
+        <button id="filter-alle">Alle retter</button>
+        <button id="filter-forretter">Forretter</button>
+        <button id="filter-hovedretter">Hovedretter</button>
+        <button id="filter-desserter">Desserter</button>
+        <button id="filter-drikkevarer">Drikkevarer</button>
+    </nav>
+</header>
+<main>
+    <h1 id="overskrift" data-overskrift></h1>
+    <section id="menu-container" data-modtager>
+    </section>
+</main>
+<template data-template>
    <article>
-    <div class="ret">
-        <h1  class="navn"></h1>
-        <div><img class="billede"></div>
-        <p class="kortbeskrivelse"></p>
-        <p class="pris"></p>
-    </div></article></template>
+                <div class="menu-billede"><img class="info" data-billede></div>
+<h2 class="info" data-navn></h2>
+        <p class="info" data-kortbeskrivelse></p>
+        <p>Pris:<span class="info" data-pris></span>,-</p>
+    </article></template>
+
+<footer>
+    <section><address>Adresse:<br>Grønnegade 97<br>1234 København K</address>
+        <aside>Åbningstider: <br>Mandag - fredag 10:30 - 22:00<br>Lørdag 12:00-23:00</aside>
+    </section>
+</footer>
 
 <body>
-    <script>
-        let menu;
-
-        document.addEventListener("DOMContentLoaded", loadJson);
-
-        let modtager = document.querySelector(".modtager");
-        let template = document.querySelector(".template");
-
-        async function loadJson() {
-            let liste = await fetch("menu.json");
-            menu = await liste.json();
-            console.log(menu);
-            visMenu(menu);
-
-        }
-
-        function visMenu(menu) {
-
-            menu.forEach(hverRet => {
-                let klon = template.cloneNode(true).content;
-                klon.querySelector(".navn").textContent = hverRet.navn;
-                klon.querySelector(".billede").src = 'imgs/small/' + hverRet.billede + '-sm.jpg';
-                klon.querySelector(".kortbeskrivelse").textContent = hverRet.kortbeskrivelse;
-                klon.querySelector(".pris").textContent = hverRet.pris + ',-';
-
-                modtager.appendChild(klon);
-            })
-
-        }
-
-    </script>
+    <script src="javascript.js"></script>
 </body>
 
 </html>
