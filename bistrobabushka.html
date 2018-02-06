@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .container {
+            align-self: center;
+        }
+
+        .modtager {
+            display: grid;
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 10px;
+        }
+
+        @media screen and (min-width: 1000px) {
+            .modtager {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 850px;
+                margin: 0 auto;
+
+            }
+        }
+
+        @media screen and (min-width: 1500px) {
+            .modtager {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1250px;
+                margin: 0 auto;
+            }
+        }
+
+        h1 {
+            font-family: sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <a href="filter.html?kategori=forretter"><button>Forretter</button></a>
+    <a href="filter.html?kategori=hovedretter"><button>Hovedretter</button></a>
+    <a href="filter.html?kategori=desserter"><button>Desserter</button></a>
+    <a href="filter.html?kategori=drikkevarer"><button>Drikkevarer</button></a>
+    <a href="bistrobabushka.html"><button>Alle</button></a>
+
+
+
+    <div class="container">
+        <div class="modtager"></div>
+    </div>
+    <template class="template">
+   <article class="ret">
+    <a data-single href="">
+        <h1  class="navn"></h1>
+        <div><img class="billede"></div>
+        <p class="kortbeskrivelse"></p>
+        <p class="pris"></p>
+    </a></article></template>
+
+
+    <script>
+        let menu;
+
+        document.addEventListener("DOMContentLoaded", loadJson);
+
+        let modtager = document.querySelector(".modtager");
+        let template = document.querySelector(".template");
+
+        async function loadJson() {
+            let liste = await fetch("menu.json");
+            menu = await liste.json();
+            console.log(menu);
+            visMenu(menu);
+
+        }
+
+        function visMenu(menu) {
+
+            menu.forEach(hverRet => {
+                let klon = template.cloneNode(true).content;
+                klon.querySelector(".navn").textContent = hverRet.navn;
+                klon.querySelector(".billede").src = 'imgs/small/' + hverRet.billede + '-sm.jpg';
+                klon.querySelector(".kortbeskrivelse").textContent = hverRet.kortbeskrivelse;
+                klon.querySelector(".pris").textContent = hverRet.pris + ',-';
+                klon.querySelector("[data-single]").href = "single.html?id=" + hverRet.id;
+
+                modtager.appendChild(klon);
+
+            })
+
+        }
+    </script>
+</body>
+
+</html>

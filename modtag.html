@@ -1,0 +1,16 @@
+<style>
+    h1 {
+        text-transform: capitalize;
+    }
+
+</style>
+
+<h1></h1>
+
+<script>
+    let url = location.href;
+    let kategori = url.split("=")[1];
+    //    alert(kategori);
+    document.querySelector("h1").textContent = kategori;
+
+</script>
