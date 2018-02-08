@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="layout.css">
+    <title>Bistro Babushka</title>
+</head>
+
+<body>
+    <div class="popup">
+        <div class="popup-content">
+            <button class="lukknap">Luk</button>
+            <h2 class="info" data-singlenavn></h2>
+
+            <div class="single-info">
+                <div class="menu-billede"><img class="info" data-singlebillede></div>
+                <details close>
+                    <summary>Beskrivelse</summary>
+                    <p class="info" data-langbeskrivelse></p>
+                </details>
+            </div>
+        </div>
+    </div>
+    <header>
+        <img src="" alt="">
+        <nav>
+            <button>Alle retter</button>
+            <button>Forretter</button>
+            <button>Hovedretter</button>
+            <button>Desserter</button>
+            <button>Drikkevarer</button>
+            <button>Side orders</button>
+
+
+            <!--            <input type="radio" checked name="sortorder" class="">-->
+        </nav>
+        <div class="sortering">
+
+            <button class="alfa">Alfabetisk</button>
+            <button class="prisop">Lav-Høj</button>
+            <button class="prisned">Høj-Lav</button>
+
+
+        </div>
+    </header>
+    <main>
+        <h1 id="overskrift" data-overskrift></h1>
+        <div class="container">
+            <section id="menu-container" data-modtager>
+            </section>
+        </div>
+    </main>
+    <template data-template>
+   <article data-ret>
+        <div class="menu-billede"><img class="info" data-billede></div>
+        <h2 class="info" data-navn></h2>
+        <p class="info" data-kortbeskrivelse></p>
+        <p>Pris:<span class="info" data-pris></span>,-</p>
+    </article></template>
+
+    <footer>
+        <section><address>Adresse:<br>Grønnegade 97<br>1234 København K</address>
+            <aside>Åbningstider: <br>Mandag - fredag 10:30 - 22:00<br>Lørdag 12:00-23:00</aside>
+        </section>
+    </footer>
+
+    <script src="javascript.js"></script>
+</body>
+
+</html>
